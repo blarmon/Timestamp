@@ -10,7 +10,7 @@ var app = express();
 
 
 app.get('/', function (req, res) {
-    var fileName = path.join(__dirname, 'noHeader.html')
+    var fileName = path.join(__dirname, 'index.html')
     res.sendfile(fileName, function(err) {
        if (err) {
            console.log(err);
