@@ -6,7 +6,7 @@ var app = express();
 
 
 
-var months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+//var months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
 
 
 app.get('/', function (req, res) {
@@ -23,7 +23,17 @@ app.get('/', function (req, res) {
 });
 
 app.get('/:date', function(req, res){
-    res.end(req.params.date);
+    
+    var date = moment(req.params.date, "X")
+    var myJSON = {};
+    
+    if (date.isValid()) {
+    myJSON = {"natural": date.format("MMMM D, YYYY"), "unix": date.format("X")}
+    }
+    else {
+    myJSON = {"natural": null, "unix": null}
+    }
+    res.json(myJSON);
     
 })
 
